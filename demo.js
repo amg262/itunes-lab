@@ -1,5 +1,6 @@
 $(function () {
-    $('#query').on('click', function (g) {
+
+        $('#query').on('click', function (g) {
         let num = 1;
         let limit = 20;
         let term2 = $('#queryString').val();
@@ -18,6 +19,13 @@ $(function () {
 
                 for (i in data.results) {
 
+                    let desc = '';
+                    if (data.results[i].shortDescription === undefined) {
+                        desc = 'un';
+                    } else {
+                        desc = data.results[i].shortDescription;
+                    }
+
 
                     $('#dataTable').append(
                         `
@@ -26,8 +34,9 @@ $(function () {
                 <td>${data.results[i].artistName}</td>
                 <td>${data.results[i].kind}</td>
                 <td>${data.results[i].trackName}</td>
-                <td>${data.results[i].collectionName}</td>
+                <td>${data.results[i].collectionName  === undefined ? '--' :  data.results[i].collectionName}</td>
                 <td>${data.results[i].primaryGenreName}</td>
+                <td>${data.results[i].shortDescription === undefined ? '--' :  data.results[i].shortDescription}</td>
       
             
 
